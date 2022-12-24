@@ -1,0 +1,52 @@
+{% extends 'menu.html' %}
+{% load hitcount_tags %}
+{% block content %}
+{% load static %}
+
+
+    <div class="container">
+        <!--Navigation-->
+        <div class="navigate">
+            <span><a href="{% url 'forum:home' %}">MyForum - Forums</a> >> <a href="#">Random Catagories}</a> >> <a href="#">Random Topic</a></span>
+        </div>
+
+        <!--Topic Section-->
+        <div class="topic-container">
+            <!--Original thread-->
+            <div class="head">
+                <div class="authors">Author</div>
+                <div class="content">Topic: post.title (Read 1200 Times)</div>
+            </div>
+
+            <div class="body">
+                <div class="authors">
+                    <div class="username"><a href="#">user.fullname</a></div>
+                    <div>Role</div>
+                    <img src="{% static 'images/paddle-w-s.png' %} " alt="">
+                    <div>Posts: <u>post.user.num_posts</u></div>
+                    <div>Points: <u>post.user.points</u></div>
+                </div>
+                <div class="content">
+                    post.content|safe
+                    <br> To see what it looks like
+                    <br><br>
+                    nothing else
+                    <br><br>
+                    <hr>
+                    Regards
+            
+                    <div class="comment">
+                        <button onclick="showComment()">Comment</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- commwt input -->
+            <div class="comment-area hide" id="comment-area" style="display:none">
+                <textarea name="comment" id="" placeholder="Comment Here"></textarea>
+                <input type="submit" name="" id="" value="submit">
+            </div>
+        </div>
+
+       <script src="{% static 'main.js' %}"></script>
+    {% endblock content %}

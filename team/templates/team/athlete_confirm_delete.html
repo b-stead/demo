@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+    <head >
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+{% block content %}
+<h1>Delete Athlete</h1>
+
+<p>Are you sure you want to remove this Athlete: {{ athlete }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+{% endblock %}

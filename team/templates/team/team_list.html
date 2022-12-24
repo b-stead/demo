@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+
+<html>
+    <head >
+        <link rel="stylesheet">
+    </head>
+    
+    {% block content %}
+    <header style="height:100px; background-color: steelblue;" class=" py-0">
+      <h4 class="display-8 fw-bolder text-white mb-3">Celadon River Canoe Club</h4>
+      <p> Manage your teams, Athlete and Coach Profiles</p>
+    </header>
+    <p style="margin-top: 1em;">
+      <a href="{% url 'team:team_create' %}" class="btn btn-primary" style="background-color: rgb(77, 130, 200);border-color:rgb(77, 130, 200) " >Add a new team</a>
+      <a href="{% url 'team:coach_create' %}" class="btn btn-primary" style="background-color: rgb(77, 130, 200);border-color:rgb(77, 130, 200)" >Add a coach</a>
+      <a href="{% url 'team:athlete_create' %}" class="btn btn-primary" style="background-color: rgb(77, 130, 200);border-color:rgb(77, 130, 200)" >Add an athlete</a>
+      <a href="{% url 'team:all_coaches' %}" class="btn btn-primary" style="background-color: rgb(46, 109, 110);border-color:rgb(46, 109, 110)" >Coaches</a>
+      <a href="{% url 'team:all_athletes' %}" class="btn btn-primary" style="background-color: rgb(46, 109, 110);border-color:rgb(46, 109, 110)" >Athletes</a>
+
+    {% if team_list %}
+    <section class="py-0" style="background-color: rgb(246, 246, 246);">
+      <div class="container px-0 my-0">
+
+        <div class="row gx-5 justify-content-center">
+          {% for team in team_list %}
+          <div class="col-lg-4 mb-5">
+            
+              <div class="card h-100 shadow border-0">
+                  <div class="card-body p-4">
+                      <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ team.name }}<a class="text-decoration-none link-dark stretched-link" href="{% url 'home:home' %}"></a></div>
+                           <p class="card-text mb-0">
+                            <h5 class="card-title mb-3">Coaches</h5>
+                              {% for coach in team.coaches.all %}
+                             <li style="margin-top: 1px;">{{ coach.name }}</li>
+                                {% endfor %}
+                                <p></p>
+                              <h5 class="card-title mb-3">Paddlers</h5>  
+                                  {% for athlete in team.athletes.all %}
+                              <li>{{ athlete.name }}</li>
+                                {% endfor %}
+    
+                            </p>
+                       </div>
+                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                          <div class="d-flex align-items-end justify-content-between">
+                          </div>
+                        </div>
+  
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+    </section>
+      
+
+      </p>
+      {% else %}
+      <p>There are no teams in the database.</p>
+      {% endif %}
+    </p>
+      
+  </p>
+
+{% endblock %}

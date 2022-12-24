@@ -1,0 +1,96 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheBoatShed</title>
+    <link rel="stylesheet" href="{% static 'css/forum_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div ng-include="'_sidebar.html'"></div>
+    <div class="container px-5">
+
+        {% url 'home' as home %}
+        <a class="navbar-brand" href="{% url 'home:home' %}">TheBoatShed</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:contact' %}">Contact</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="##">Pricing</a></li> -->
+                {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'forum:home' %}">Forum</a></li>
+                        <li class="nav-item dropdown"style="color: rgb(63, 63, 63);" >
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMyTeam" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Team</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMyTeam">
+                                <li><a class="dropdown-item" href="{% url 'team:all_teams' %}">Teams</a></li>
+                                <li><a class="dropdown-item" href="{% url 'team:all_athletes' %}">Athletes</a></li>
+                                <li><a class="dropdown-item" href="{% url 'team:all_coaches' %}">Coaches</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"style="color: rgb(63, 63, 63);" >
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownProfile" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dashboard</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMyTeam">
+                                <li><a class="dropdown-item" href="{% url 'data-viz:home' %}">Performance Tracking</a></li>
+                                <li><a class="dropdown-item" href="{% url 'data-viz:demo1' %}">Demo-1</a></li>
+                                <li><a class="dropdown-item" href="{% url 'data-viz:demo2' %}">Demo-2</a></li>
+                                <li><a class="dropdown-item" href="{% url 'data-viz:demo3' %}">Demo-3</a></li>
+        
+                            </ul>
+                        </li>
+                    {% endif %}
+                <li class="nav-item dropdown"data-toggle="dropdown" href="#">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownLogin" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-door-open-fill"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLogin">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" style="color: rgb(63, 63, 63);" href="{% url 'logout' %}?next={% url 'home:home' %}"><i class="bi bi-box-arrow-left"></i>  Logout</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" style="color: rgb(63, 63, 63);" href=" {% url 'login' %}?next={% url 'home:home' %} "><i class="bi bi-box-arrow-right"></i>  Login</a></li>
+                        <li><a class="dropdown-item" style="color: rgb(63, 63, 63);" href=" {% url 'home:signup' %}?next={% url 'home:home' %} "><i class="bi bi-pencil-square"></i> Signup</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+
+</nav>
+        <!--SearchBox Section-->
+                <form action="{% url 'forum:search_result' %}" role="form" method="GET">
+                <div class="search-box">
+                    <div>
+                        <select name="search-box" id="">
+                            <option value="Everything">Everything</option>
+                            <option value="Titles">Titles</option>
+                            <option value="Descriptions">Descriptions</option>
+                        </select>
+                        <input type="text" name="q" placeholder="search ...">
+                        <button type="submit" name="search"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                </form>
+    </header>
+    {% if messages %}
+        {% for message in messages %}
+            <div style="background-color:rgb(35, 182, 155);color:#000;font-weight:bolder;padding:20px;width:100%;"> {{message}} </div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+    <div style="margin-bottom: 150px;"></div>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html>

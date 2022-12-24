@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+
+<html>
+    <head >
+        <link rel="stylesheet" href="DemoSite/static/styles.css">
+    </head>
+
+    {% block content %}
+    
+    <span style="float: right;">
+    <a href="{% url 'team:athlete_update' athlete.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="#"><i class="fa fa-trash"></i></a>
+
+    </span>
+    <div>
+
+    <h1>{{ athlete.name }}</h1>
+    <div >
+      {% if athlete.profile_pic %}
+        <img src="{{ athlete.profile_pic.url}}" alt="">
+      {% else %}
+        <img src="{% static 'blank-profile.jpg' %} " alt="">
+
+      {% endif %}
+    </div>
+    <h2> Athlete Info:</h2>
+    <div>
+      <ul>
+        <li>Team: {{ team }}</li>
+        <li>Age: {{ athlete.age }} | Birthdate: {{ athlete.DOB }}</li>
+        <li>Bio: {{ athlete.bio}}</li>
+      </ul>
+
+    </div>
+    <p>
+        <a href="{% url 'team:athlete_update' athlete.id %}">Update Athlete Profile</a>
+      </p>
+          
+  </div>
+    
+
+
+    
+    {% endblock %}

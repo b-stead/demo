@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+
+<html>
+
+    {% block content %}
+    
+    <span style="float: right;">
+    <a href="{% url 'team:team_update' team.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="#"><i class="fa fa-trash"></i></a>
+
+    </span>
+    
+    <h1>{{ team.name }}</h1>
+
+    {% if team.coaches.all %}
+    <p>Coaches:
+      {% for coach in team.coaches.all %}
+      <span style="border:1px grey solid; background-color: rgb(92, 118, 180);">{{ coach }} </span>
+      {% endfor %}
+    </p>
+    {% endif %}
+    <p>
+    </p>
+
+    {% if team.athletes.all %}
+    <p>Athletes:
+      {% for athlete in team.athletes.all %}
+      <span style="border:1px grey solid; background-color: rgb(92, 118, 180);">{{ athlete }}</span>
+      {% endfor %}
+    </p>
+    {% endif %}
+    <p>
+      <a href="{% url 'team:all_athletes'%}"><i class="fa fa-people"></i>All Athletes</a>
+    </p>
+    
+    {% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+
+<html>
+    <head >
+        <link rel="stylesheet" href="DemoSite/static/styles.css">
+    </head>
+
+    {% block content %}
+    
+    <span style="float: right;">
+    <a href="{% url 'team:coach_update' coach.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="#"><i class="fa fa-trash"></i></a>
+
+    </span>
+    
+    <h1>{{ coach.name }}</h1>
+
+ 
+    <p>Coaches Bio:
+      {{ coach.bio }}
+      </p>
+
+    {% if coach.athletes.all %}
+    <p>Coaches Athletes:
+      {% for athlete in coach.athletes.all %}
+
+      {% endfor %}
+    </p>
+    {% endif %}
+    <p>
+    </p>
+    
+    {% endblock %}

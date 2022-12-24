@@ -1,0 +1,90 @@
+{% extends 'menu.html' %}
+{% load static %}
+
+{% block content %}
+<body style="background-color:rgb(80, 142, 218)">
+    {% if forums %}
+    <Div class="subforum-description subforum-column"> 
+        
+            <div class="brand"><p style="font-weight: bold;">TheBoatShed - Forum </p></div>
+            {% if user.is_authenticated %}
+            <div><a href="{% url 'forum:create_post' %}" class="btn btn-success">New Post</a></div>
+
+            {% endif %}
+        
+        <div class="subforum-search" style="padding-right: 2px;">
+            <!--SearchBox Section-->
+        <form action="{% url 'forum:search_result' %}" role="form" method="GET">
+            <div class="search-box">
+                <div>
+                    <select name="search-box" id="">
+                        <option value="Everything">Everything</option>
+                        <option value="Titles">Titles</option>
+                        <option value="Descriptions">Descriptions</option>
+                    </select>
+                    <input type="text" name="q" placeholder="search ...">
+                    <button type="submit" name="search"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            </form>
+        </div>
+    
+    </Div>
+
+
+    {% for forum in forums %}
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            {% if forum.title == 'Training'%}
+            <i class="fa-solid fa-dumbbell"></i>
+            {% elif forum.title == 'Racing'%}
+            <i class="bi bi-stopwatch-fill"></i>
+            {% elif forum.title == 'For Sale'%}
+            <i class="bi bi-tag-fill"></i>
+            {% elif forum.title == 'Ads'%}
+            <i class="bi bi-badge-ad-fill"></i>
+            {% elif forum.title == 'General Chat'%}
+            <i class="bi bi-chat-left-dots-fill"></i>
+            {% elif forum.title == 'Contact Us'%}
+            <i class="bi bi-person-lines-fill"></i>
+            {% endif %}
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="{{forum.get_url}}">{{forum.title}}</a></h4>
+            <p>Description: {{forum.description}} </p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>{{forum.num_posts}} Posts</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            {% if forum.last_post %}
+                <b><a href="{{forum.last_post.get_url}}">Last post</a></b> by <a href="">{{forum.last_post.user.fullname|title}}</a> 
+                <br>on <small>{{forum.last_post.date|date}}</small>
+            {% else %}
+                <span>No posts in this category.</span>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+        {% else %}
+        <div class="subforum-title">
+            <h1><i class="fa fa-frown-o"></i>&nbsp;you have no posts yet.</h1>
+        </div>
+        {% endif %}
+
+    <!-- Forum Info -->
+    <div class="forum-info">
+        <div class="chart">
+            MyForum - Stats &nbsp;<i class="fa fa-bar-chart"></i>
+        </div>
+        <span><u>{{num_posts}}</u> Posts in <u>{{num_categories}}</u> Categories by <u>{{num_users}}</u> Members.</span><br>
+        {% if forums %}
+            <span>Latest post: <b><a href="{{last_post.get_url}}">{{last_post.title}}</a></b> on {{last_post.date|date}} By <a href="">{{last_post.user.fullname|title}}</a></span>.<br>
+            <span>Check <a href="{% url 'forum:latest_posts' %}">the latest posts</a> .</span><br>
+        {% endif %}
+    </div>
+
+</body>
+<script src="{% static 'main.js' %}"></script>
+    {% endblock content %}

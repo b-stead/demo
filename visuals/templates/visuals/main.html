@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+
+<html>
+    <head >
+        <link rel="stylesheet" href="main/static/styles.css">
+    </head>
+    
+    {% block content %}
+    <header class="bg-secondary py-3">
+      <h4 class="display-5 fw-bolder text-white mb-3">Performance Tracking </h4>
+    </header>
+    <section class="py-5">
+      <Div class="container px-3">
+        <Div>
+          <p>
+            These are demo pages of the options that will be avilable over at TheBoatShed.info<br>
+            The site is hosted on python anwhwere and runs on Django with Plotly taking care of the visualisations <br>
+        
+          </p>
+        </Div>
+        <table 
+            class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <td><a class="btn btn-primary btn-block" href="{% url 'data-viz:demo1' %}">Demo 1</a></td>
+              <td>Longitudinal tracking of performance data in your team</td>
+            </tr>
+            <tr>
+              <td><a class="btn btn-primary btn-block" href="{% url 'data-viz:demo2' %}">Demo 2</a></td>
+              <td>Profiling athletes against a set standard and individual progression</td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary btn-block" href="{% url  'data-viz:demo3' %}">Demo 3</a></td>
+                <td>Visualise speed & stroke rate data from a RaceLogic GPS VBox unit</td>
+              </tr>
+          </tbody>
+        </table>
+
+      </Div>
+    </section>
+
+    
+    {% endblock %}
+
+
+</html>

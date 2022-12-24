@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+<html>
+    <head>
+        <link rel="stylesheet" href="main/static/style.css">
+    </head>
+    
+    {% block content %}
+    {% load plotly_dash %}
+    
+          <div style=" height: 100%; margin-bottom: 0;">
+            {%plotly_app name="demo2" ratio=1%}
+          </div>
+    
+    {% endblock %}
+
+
+</html>

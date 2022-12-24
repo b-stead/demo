@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block navbar %}
+
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div ng-include="'_sidebar.html'"></div>
+    <div class="container px-5">
+        {% url 'home' as home %}
+        <img src="{% static 'images/paddle-w-s.png' %} "></img>
+        <a class="navbar-brand" style='font-size: x-large;' href="{% url 'home:home' %}"><h1>TheBoatShed</h1></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:contact' %}">Contact</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="##">Pricing</a></li> -->
+                {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'forum:home' %}">Forum</a></li>
+                        <li class="nav-item dropdown"style="color: rgb(63, 63, 63);" >
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMyTeam" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Team</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMyTeam">
+                                <li><a class="dropdown-item" href="{% url 'team:all_teams' %}">Teams</a></li>
+                                <li><a class="dropdown-item" href="{% url 'team:all_athletes' %}">Athletes</a></li>
+                                <li><a class="dropdown-item" href="{% url 'team:all_coaches' %}">Coaches</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown"style="color: rgb(63, 63, 63);" >
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownProfile" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dashboard</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMyTeam">
+                                <li><a class="dropdown-item" href="{% url 'data-viz:home' %}">Performance Tracking</a></li>
+                                <li><a class="dropdown-item" href="{% url 'data-viz:demo1' %}">Demo-1</a></li>
+                                <li><a class="dropdown-item" href="{% url 'data-viz:demo2' %}">Demo-2</a></li>
+                                <li><a class="dropdown-item" href="{% url 'data-viz:demo3' %}">Demo-3</a></li>
+        
+                            </ul>
+                        </li>
+                    {% endif %}
+                <li class="nav-item dropdown"data-toggle="dropdown" href="#">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownLogin" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-door-open-fill"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLogin">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" style="color: rgb(63, 63, 63);" href="{% url 'logout' %}?next={% url 'home:home' %}"><i class="bi bi-box-arrow-left"></i>  Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" style="color: rgb(63, 63, 63);" href="{% url 'home:update_profile' %}"><i class="bi bi-box-arrow-left"></i>Profile</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" style="color: rgb(63, 63, 63);" href=" {% url 'login' %}?next={% url 'home:home' %} "><i class="bi bi-box-arrow-right"></i>  Login</a></li>
+                        <li><a class="dropdown-item" style="color: rgb(63, 63, 63);" href=" {% url 'home:signup' %}?next={% url 'home:home' %} "><i class="bi bi-pencil-square"></i> Signup</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+
+                
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+{% endblock %}

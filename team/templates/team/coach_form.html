@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+{% load crispy_forms_tags %} 
+
+<html>
+    <head >
+        <link rel="stylesheet" href="main/static/styles.css">
+    </head>
+
+{% block content %}
+<div class="container px-0">
+  <div class="row gx-5 align-items-center justify-content-center">
+      <div class="col-lg-8 col-xl-7 col-xxl-6">
+          <div class="my-5 text-center text-xl-start">
+              <h1 class="display-5 fw-bolder text-black mb-2">Coaches Profile</h1>
+              <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start text-black-50 mb-4">
+                  <form method="post" novalidate style="color: black">
+                      {% csrf_token %}
+                      {{ form|crispy }}
+
+                      <button type="submit" class="btn btn-success">Create Profile</button>
+                      <a href="{% url 'team:all_coaches' %}" class="btn btn-primary" >Cancel</a>
+                    </form>
+              </div>
+          </div>
+      </div>
+      <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"></div>
+  </div>
+</div>
+
+
+{% endblock %}

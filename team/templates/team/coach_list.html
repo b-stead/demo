@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+{% load static %}
+
+<html>
+    <head >
+        <link rel="stylesheet" href="main/static/styles.css">
+    </head>
+    
+    {% block content %}
+    <h1>Your coaches</h1>
+
+    <div style="float:right">
+    <!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
+    <form>
+      <input type="text" placeholder="Search.." name="search"
+      {% if search %} value="{{ search }}" {% endif %}
+      >
+      <button type="submit"><i class="fa fa-search"></i></button>
+    <a href="{% url 'team:all_teams' %}"><i class="fa fa-undo"></i></a>
+    </form>
+    </div>
+    
+    <p>
+    <p>
+    {% if coach_list %}
+    <ul>
+      {% for coach in coach_list %}
+        <li>
+            <a href="{% url 'team:coach_detail'  coach.id %}">{{ coach.name }}</a>
+
+            (<a href="{% url 'team:coach_update' coach.id %}">Edit</a> |
+            <a href="#">Delete</a>)
+    
+            <div style="left:10px">
+                {% if coach.bio|length < 100 %}
+                    {{ coach.bio }}
+                {% else %}
+                    {{ coach.bio|slice:"0:99" }}
+                    <a href="{% url 'team:coach_detail'  coach.id %}">...</a>
+                {% endif %}
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>There are no coaches in the database.</p>
+    {% endif %}
+    </p>
+    <p>
+      <a href="{% url 'team:coach_create' %}">add a Coach to your team</a>
+    </p>
+    {% endblock %}
