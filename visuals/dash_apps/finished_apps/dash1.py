@@ -17,7 +17,9 @@ app = DjangoDash('demo1',external_stylesheets=[dbc.themes.SUPERHERO])
 app.css.append_css({ "external_url" : "/static/assets/css/dbc.css" })
 app.css.append_css({ "external_url" : "/static/assets/css/chriddyp.css" })
 
-df = pd.read_csv('visuals/data/benchmarking.csv', encoding='UTF-8')
+url = https://github.com/b-stead/demo/blob/7e52014c12781053352499aafb69a21d2ff769b6/visuals/data/Benchmarking.csv
+
+df = pd.read_csv(url, encoding='UTF-8')
 
 markdown_text = '''
     Performance data measured as a percentage from a standard. \n
