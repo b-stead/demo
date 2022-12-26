@@ -22,8 +22,11 @@ external_stylesheets = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-tem
 
 app = DjangoDash('demo2', external_stylesheets=[dbc.themes.SUPERHERO,dbc_css])
 
-df = pd.read_csv("visuals/data/Benchmark-2.csv")
-dflt = pd.read_csv("visuals/data/latest.csv")
+url = https://github.com/b-stead/demo/blob/1a6744f5df1e9a303838c1b1edc2911c1df9ab57/visuals/data/Benchmark-2.csv
+url2 = https://github.com/b-stead/demo/blob/1a6744f5df1e9a303838c1b1edc2911c1df9ab57/visuals/data/latest.csv
+    
+df = pd.read_csv(url)
+dflt = pd.read_csv(url2)
 df['Date']=pd.to_datetime(df['Date'])
 df['Date'] = df['Date'].dt.strftime("%Y/%m/%d")
 aggfuncs=['min']
