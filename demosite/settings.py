@@ -28,22 +28,20 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'www.theboatshed.info'
-]
+ALLOWED_HOSTS = ['*']
 
 #deployment settings
-CSRF_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
-SESSION_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
 
-SECURE_SSL_REDIRECT = True
+#SECURE_SSL_REDIRECT = True
 
-SECURE_HSTS_SECONDS = 60
+#SECURE_HSTS_SECONDS = 60
 
-SECURE_HSTS_PRELOAD = True
+#SECURE_HSTS_PRELOAD = True
 
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Application definition
 
@@ -100,7 +98,7 @@ ROOT_URLCONF = 'demosite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/ 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -187,7 +185,7 @@ PLOTLY_COMPONENTS = [
 STATIC_DIR = BASE_DIR / 'static'
 STATICFILES_LOCATION = 'static'
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'demosite/static')
 ]
