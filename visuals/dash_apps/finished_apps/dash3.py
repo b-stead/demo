@@ -14,7 +14,8 @@ dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.mi
 
 app = DjangoDash('demo3',external_stylesheets=[dbc.themes.SUPERHERO,dbc_css])
 #app = Dash(__name__,external_stylesheets=[dbc.themes.CYBORG,dbc_css])
-df = pd.read_csv('visuals/data/df4.csv')
+url = https://github.com/b-stead/demo/blob/30a4528235d1719003a3e4b316af5a5ca22f6266/visuals/data/df4.csv
+df = pd.read_csv(url)
 
 bins = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 aggfuncs = ['mean', 'max']
