@@ -141,6 +141,3 @@ def table_update(relayoutData, n_clicks, **kwargs):
         if n_clicks >=1:
             return dff_t.to_dict('records')
 
-
-if __name__ == '__main__':
-    app.run_server(debug=True, port=8051)

@@ -26,10 +26,24 @@ APP_NAME = 'demosite'
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'www.theboatshed.info'
+]
 
+#deployment settings
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_SSL_REDIRECT = True
+
+SECURE_HSTS_SECONDS = 60
+
+SECURE_HSTS_PRELOAD = True
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Application definition
 

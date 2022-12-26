@@ -1,6 +1,7 @@
 channels==2.4.0
-dash_bootstrap_components==0.13.1
-dash_bootstrap_templates==1.0.7
+dash_bootstrap_components
+dash_bootstrap_templates
+dash_rendererpip
 Django==3.2.15
 django_plotly_dash==2.0.0
 django_resized==1.0.2
@@ -10,3 +11,12 @@ numpy==1.23.4
 pandas==1.5.1
 plotly==5.10.0
 python-decouple==3.6
+dpd_static_support
+channels_redis
+django-crispy-forms
+django_fastdev
+django_extensions
+django-bootstrap4
+django-hitcount
+django-resized
+pillow
