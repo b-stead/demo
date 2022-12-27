@@ -26,7 +26,7 @@ APP_NAME = 'demosite'
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -182,7 +182,7 @@ PLOTLY_COMPONENTS = [
 
 #STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 #set static HTML-CSS files locations
-STATIC_DIR = BASE_DIR / 'static'
+
 STATICFILES_LOCATION = 'static'
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
