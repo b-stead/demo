@@ -28,7 +28,7 @@
                 <div class="table-row">
 
                     {% if post.closed == True %}
-                    <div class="status"><i class="fa fa-lock"></i></div>
+                    <div class="status"><i class="fa-thumbs-up"></i></div>
                     {% elif post.num_comments == 0 %}
                     <div class="status"><i class="fa fa-frown-o"></i></div>
                     {% elif post.num_comments > 0 and post.num_comments < 2 %}

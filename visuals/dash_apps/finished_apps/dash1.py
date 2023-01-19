@@ -13,6 +13,7 @@ load_figure_template("superhero")
 #pylint: disable=too-many-arguments, unused-argument, unused-variable
 #external_stylesheets = chriddyp
 
+#app = DjangoDash('demo1',external_stylesheets=external_stylesheets)
 app = DjangoDash('demo1',external_stylesheets=[dbc.themes.SUPERHERO])
 app.css.append_css({ "external_url" : "/static/assets/css/dbc.css" })
 app.css.append_css({ "external_url" : "/static/assets/css/chriddyp.css" })

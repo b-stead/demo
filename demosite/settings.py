@@ -236,7 +236,7 @@ ASGI_APPLICATION = 'demosite.routing.application'
 
 CHANNEL_LAYERS = {
     'default' : {
-        'BACKEND' : 'Channels_redis.core.RedicChannelLayer',
+        'BACKEND' : 'Channels_redis.core.RedisChannelLayer',
         'CONFIG' : {
             'hosts': [('127.0.0.1', 6379),],
         }
